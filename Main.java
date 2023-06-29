@@ -40,18 +40,20 @@ public class Main {
                 String name = leitor .nextLine();            
                 print("\nAgora você irá escolher sua a arma favorita, você tem três escolhas: \n");
                 divisor(null);
-                print(" - A CARABINA é uma arma de fogo de longo alcance, medindo 1 metro e equipada com balas de 5mm, "+
-                "foi muito utilizada no século XX por Cangaceiros e Vaqueiros,\n");
+                print(" - A CARABINA é uma arma de fogo de longo alcance, medindo 1 metro e equipada\n" +
+                "com balas de 5mm, foi muito utilizada no século XX por Cangaceiros e Vaqueiros,\n");
                 
-                print("A PEIXEIRA será sua arma de corpo a corpo, trazendo uma lâmina e 30cm presa a um cabo de feito de " +
-                "restos de crânio de Jaguatirica, essa arma poderá te ajudar em momentos de conflito direto com os "+
-                "inimigos que surgirão na sua aventura.\n"+
-                "Nossa ultima arma é a MANDALA, uma armamento místico com escritas antigas "+
-                "que canaliza as energia dos elementos naturais "+
-                "a força do Mandacaru e a areia escaldante do sertão e libera como" +
-                "finos e longos espinhos ou energia quente como sol.\n");
-                print("==================================================");
-                print("Qual arma você prefere? CARABINA, PEIXEIRA ou MANDALA?");
+                print("- A PEIXEIRA será sua arma de corpo a corpo, trazendo uma lâmina e 30cm presa\n" +
+                "a um cabo de feito de restos de crânio de Jaguatirica, essa arma poderá te ajudar\n" +
+                "em momentos de conflito direto com os inimigos que surgirão na sua aventura.\n");
+
+                print("- Nossa ultima arma é a MANDALA, uma armamento místico com escritas antigas\n"+
+                "que canaliza as energia dos elementos naturais a força do Mandacaru e a areia\n" +
+                "escaldante do sertão e libera como finos e longos espinhos ou energia quente como sol.\n");
+                divisor(null);
+                print("Qual arma você prefere?\n"+
+                "- CARABINA;\n"+"- PEIXEIRA\nou\n- MANDALA?");
+                
                 String arma = leitor .nextLine();
                 persona mainPersona = new persona(name, 100, arma);
                 print("Ok, vou chamá-lo de " + mainPersona.name);

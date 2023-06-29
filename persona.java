@@ -11,6 +11,7 @@ public class persona {
         this.weapon = weapon;
     }
 
+    
     boolean changeEnergy (int change){
         boolean alive = true;
         this.energy += change;
@@ -37,11 +38,5 @@ public class persona {
             return alive;
         }
     }
-
-    
-    // public personaV (String name, int energy, String weapon){
-    //     this.name = name;
-    //     this.energy = energy;
-    //     this.weapon = weapon;
-    // }
 }
+    
