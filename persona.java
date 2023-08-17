@@ -1,11 +1,11 @@
-public class persona {
+public class Persona {
     String name;
     int energy;
 
 
 
 
-    public persona(String name, int energy) {
+    public Persona(String name, int energy) {
         this.name = name;
         this.energy = energy;
     }
