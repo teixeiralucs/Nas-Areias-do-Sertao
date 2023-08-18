@@ -196,49 +196,57 @@ public class Main {
                 "vem e empala, diretamente no coração, o matando imediatamente, e condenando sua vila "+
                 "às maiores atocidades cometidas por Shayanne";
                 String chapter3End = "FIM DA HISTORIA";
+                String[] choicesCap1 = new String[2];
+                choicesCap1[0] = chapter1Choice1;
+                choicesCap1[1] = chapter1Choice2;
+                String[] choicesCap2 = new String[2];
+                choicesCap2[0] = chapter2Choice1;
+                choicesCap2[1] = chapter2Choice2;
 
                 Scanner leitor = new Scanner (System.in);
                 Persona character = new Persona ("Claúdio", 100);
-                Chapter preChapter = new Chapter (preTextTitle, preTextText, "", "",
+                Chapter preChapter = new Chapter (preTextTitle, preTextText, null ,
                 character, 0, "");
-                Chapter chapter1 = new Chapter (chapter1Title, chapter1Text, "", "", 
+                Chapter chapter1 = new Chapter (chapter1Title, chapter1Text, null, 
                 character, chapter1Mod, "");
-                Chapter chapter1Cont = new Chapter ("" , chapter1TextCont, "", "", 
+                Chapter chapter1Cont = new Chapter ("" , chapter1TextCont, null, 
                 character, chapter1ContMod, "");
-                Chapter chapter1Cont2 = new Chapter ("", chapter1TextCont2, chapter1Choice1, chapter1Choice2, 
+                Chapter chapter1Cont2 = new Chapter ("", chapter1TextCont2, choicesCap1, 
                 character, 0, "");
-                Chapter chapter1Final = new Chapter ("", chapter1TextEnd, "", "", 
+                Chapter chapter1Final = new Chapter ("", chapter1TextEnd, null, 
                 character, -100, chapter1End2);
-                Chapter chapter1ToGo = new Chapter ("", chapter1TextProceed, "", "", 
+                Chapter chapter1ToGo = new Chapter ("", chapter1TextProceed, null, 
                 character, 0, chapter1End);
-                Chapter chapter2 = new Chapter (chapter2Title, chapter2Text, chapter2Choice1, chapter2Choice2,
+                Chapter chapter2 = new Chapter (chapter2Title, chapter2Text, choicesCap2,
                 character, 0, chapter2End);
-                Chapter chapter3Buscar = new Chapter (chapter3Title, chapter3TextBuscar, "", "", 
+                Chapter chapter3Buscar = new Chapter (chapter3Title, chapter3TextBuscar, null, 
                 character, 0, chapter3End);
-                Chapter chapter3Lutar = new Chapter (chapter3Title, chapter3TextLutar, "", "",
+                Chapter chapter3Lutar = new Chapter (chapter3Title, chapter3TextLutar, null,
                 character,  -100, chapter3End );
 
         preChapter.show();
         chapter1.show();
         chapter1Cont.show();
         chapter1Cont2.show();
-        String answer1 = leitor .nextLine();
-        if (answer1.equalsIgnoreCase(chapter1Choice1)){
+        int choiceCap1Array = chapter1Cont2.choose(choicesCap1);
+
+        if (choiceCap1Array == 0){
             character.changeEnergy(50);
             chapter1Final.show();
     
         }
-        else if (answer1.equalsIgnoreCase(chapter1Choice2)){
+        else if (choiceCap1Array == 1){
             character.changeEnergy(20);
             chapter1ToGo.show();
             chapter2.show();
-            String answer2 = leitor .nextLine();
-            if (answer2.equalsIgnoreCase(chapter2Choice1)){
+            int choiceCap2Array = chapter2.choose(choicesCap2);
+
+            if (choiceCap2Array == 0){
                 character.changeEnergy(30);
                 chapter3Buscar.show();
 
             }
-            else if (answer2.equalsIgnoreCase(chapter2Choice2)){
+            else if (choiceCap2Array == 1){
                 character.changeEnergy(60);
                 chapter3Lutar.show();
             }
