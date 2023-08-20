@@ -1,5 +1,3 @@
-import java.util.Scanner;
-
 public class Main {
         public static void print(String a){
             System.out.println(a);
@@ -38,8 +36,8 @@ public class Main {
         + "Você fica em silêncio, tudo que ele mais quer é fugir daquele lugar, daquelas pessoas.\n " +
         "'- Poderíamos fugir do meu pai' diz Catarina após perceber a pausa do seu amado\n" +
         "ela sabe como o assunto é delicado e isso o fará pensar sobre.\n" +
-        "'- Acho que deveríamos ir, já está ficando tarde!' " + "você se levanta e se despede.\n" +
-        "'- Amanhã a gente se encontra, tá bem?' eles se beijam e " + "você vai embora.";
+        "'- Acho que deveríamos ir, já está ficando tarde!' você se levanta e se despede.\n" +
+        "'- Amanhã a gente se encontra, tá bem?' eles se beijam e você vai embora.";
        int chapter1Mod = -15; 
        String chapter1TextCont = "No caminho para casa você pensou muito no que Catarina disse, ele já havia ouvido falar " +
         "de Paradiso, um lugar onde a água salgada do mar não destruiu a vida, mas esse lugar " +
@@ -196,68 +194,60 @@ public class Main {
                 "vem e empala, diretamente no coração, o matando imediatamente, e condenando sua vila "+
                 "às maiores atocidades cometidas por Shayanne";
                 String chapter3End = "FIM DA HISTORIA";
-                String[] choicesCap1 = new String[2];
-                choicesCap1[0] = chapter1Choice1;
-                choicesCap1[1] = chapter1Choice2;
-                String[] choicesCap2 = new String[2];
-                choicesCap2[0] = chapter2Choice1;
-                choicesCap2[1] = chapter2Choice2;
+                Choice[] preChaperChoice = new Choice[1];
+                Choice[] chapter1ToGoChoice = new Choice[1];
+                Choice[] chapter1ContChoice = new Choice[1];
+                Choice[] chapter1Choice = new Choice[1];
+                Choice[] choicesCap1 = new Choice[2];
+                Choice[] choicesCap2 = new Choice[2];
+                Choice[] choiceEmpty = new Choice [0];
 
-                Scanner leitor = new Scanner (System.in);
                 Persona character = new Persona ("Claúdio", 100);
-                Chapter preChapter = new Chapter (preTextTitle, preTextText, null ,
+                Chapter preChapter = new Chapter (preTextTitle, preTextText, preChaperChoice ,
                 character, 0, "");
-                Chapter chapter1 = new Chapter (chapter1Title, chapter1Text, null, 
+
+                Chapter chapter1 = new Chapter (chapter1Title, chapter1Text, chapter1Choice, 
                 character, chapter1Mod, "");
-                Chapter chapter1Cont = new Chapter ("" , chapter1TextCont, null, 
+
+                Chapter chapter1Cont = new Chapter ("" , chapter1TextCont, chapter1ContChoice, 
                 character, chapter1ContMod, "");
+
                 Chapter chapter1Cont2 = new Chapter ("", chapter1TextCont2, choicesCap1, 
                 character, 0, "");
-                Chapter chapter1Final = new Chapter ("", chapter1TextEnd, null, 
+
+                Chapter chapter1Final = new Chapter ("", chapter1TextEnd, choiceEmpty, 
                 character, -100, chapter1End2);
-                Chapter chapter1ToGo = new Chapter ("", chapter1TextProceed, null, 
+
+                Chapter chapter1ToGo = new Chapter ("", chapter1TextProceed, chapter1ToGoChoice, 
                 character, 0, chapter1End);
+
                 Chapter chapter2 = new Chapter (chapter2Title, chapter2Text, choicesCap2,
                 character, 0, chapter2End);
-                Chapter chapter3Buscar = new Chapter (chapter3Title, chapter3TextBuscar, null, 
+
+                Chapter chapter3Buscar = new Chapter (chapter3Title, chapter3TextBuscar, choiceEmpty, 
                 character, 0, chapter3End);
-                Chapter chapter3Lutar = new Chapter (chapter3Title, chapter3TextLutar, null,
+
+                Chapter chapter3Lutar = new Chapter (chapter3Title, chapter3TextLutar, choiceEmpty,
                 character,  -100, chapter3End );
 
-        preChapter.show();
-        chapter1.show();
-        chapter1Cont.show();
-        chapter1Cont2.show();
-        int choiceCap1Array = chapter1Cont2.choose(choicesCap1);
+                preChaperChoice[0] = new Choice ("", chapter1);
+                chapter1Choice[0] = new Choice ("", chapter1Cont);
+                chapter1ContChoice[0] = new Choice ("", chapter1Cont2);
+                chapter1ToGoChoice[0] = new Choice ("", chapter2);
+                choicesCap1[0] = new Choice (chapter1Choice1, chapter1Final);
+                choicesCap1[1] = new Choice (chapter1Choice2, chapter1ToGo);
+                choicesCap2[0] = new Choice (chapter2Choice1, chapter3Buscar);
+                choicesCap2[1] = new Choice (chapter2Choice2, chapter3Lutar);
 
-        if (choiceCap1Array == 0){
-            character.changeEnergy(50);
-            chapter1Final.show();
-    
-        }
-        else if (choiceCap1Array == 1){
-            character.changeEnergy(20);
-            chapter1ToGo.show();
-            chapter2.show();
-            int choiceCap2Array = chapter2.choose(choicesCap2);
-
-            if (choiceCap2Array == 0){
-                character.changeEnergy(30);
-                chapter3Buscar.show();
-
-            }
-            else if (choiceCap2Array == 1){
-                character.changeEnergy(60);
-                chapter3Lutar.show();
-            }
+        Chapter rootChapter = preChapter;
+        rootChapter.run();
+        
         
             
         }
  
  
-    leitor .close();
     }
-}
 
     
 
