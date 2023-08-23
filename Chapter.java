@@ -1,13 +1,61 @@
 
 import java.util.Scanner;
+
 public class Chapter {
-    String title;
-    String text;
-    Choice[] choices;
-    Persona character;
-    int modifier;
-    String end;
+    private String title;
+    private String text;
+    private Choice[] choices;
+    private Persona character;
+    private int modifier;
+    private String end;
     
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public String getText() {
+        return text;
+    }
+
+    public void setText(String text) {
+        this.text = text;
+    }
+
+    public Choice[] getChoices() {
+        return choices;
+    }
+
+    public void setChoices(Choice[] choices) {
+        this.choices = choices;
+    }
+
+    public int getModifier() {
+        return modifier;
+    }
+
+    public void setModifier(int modifier) {
+        this.modifier = modifier;
+    }
+
+    public String getEnd() {
+        return end;
+    }
+
+    public void setEnd(String end) {
+        this.end = end;
+    }
+
+    public Object getRun() {
+        return run;
+    }
+
+    public void setRun(Object run) {
+        this.run = run;
+    }
     public Object run;
     
 
@@ -71,5 +119,3 @@ if (choices.length == 2){
 } 
 }
 }
-
-
