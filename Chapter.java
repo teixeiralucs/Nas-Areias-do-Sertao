@@ -1,10 +1,10 @@
-
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Chapter {
     private String title;
     private String text;
-    private Choice[] choices;
+    private ArrayList<Choice> choices;
     private Persona character;
     private int modifier;
     private String end;
@@ -25,12 +25,12 @@ public class Chapter {
         this.text = text;
     }
 
-    public Choice[] getChoices() {
+    public ArrayList<Choice> getChoices() {
         return choices;
     }
 
-    public void setChoices(Choice[] choices) {
-        this.choices = choices;
+    public void setChoices(Choice choice) {
+        choices.add(choice);
     }
 
     public int getModifier() {
@@ -59,7 +59,7 @@ public class Chapter {
     public Object run;
     
 
-    public Chapter (String title, String text, Choice[] choices, Persona character, int modifier, String end){
+    public Chapter (String title, String text, ArrayList<Choice> choices, Persona character, int modifier, String end){
         this.title = title ;
         this.text = text;
         this.character = character;
@@ -83,7 +83,7 @@ public class Chapter {
     }
     public void choose(){
         boolean loop = true;
-        if (choices.length == 1){
+        if (choices != null){
         while(loop == true){
             Scanner reader = new Scanner (System.in);
             String type = reader.nextLine();
@@ -92,30 +92,15 @@ public class Chapter {
                     loop = false;
                     Chapter next = choices.getnext();
                     next.run();
-            }
+
 
         }
         System.out.println("Escolha invalida! Tente novamente!");
-        System.out.println(this.choices);    
+        System.out.println(this.choices);
+        reader.close();    
         
     }
 } 
-if (choices.length == 2){
-        while(loop == true){
-            Scanner reader = new Scanner (System.in);
-            String type = reader.nextLine();
-            for(Choice choices : choices){
-                if(choices.getanswer().equalsIgnoreCase(type)){
-                    loop = false;
-                    Chapter next = choices.getnext();
-                    next.run();
-            }
-
-        }
-        System.out.println("Escolha invalida! Tente novamente!");
-        System.out.println(this.choices);    
-        
-    }
-} 
+}
 }
 }
