@@ -9,20 +9,20 @@ public class FileReader {
         HashMap<String, Persona> personaMap = new HashMap<String, Persona>();
         File file = new File(path);
         try {
-            Scanner reader = new Scanner(file, "UTF-8");
+            Scanner FileReader = new Scanner(file, "UTF-8");
             System.out.println ("Escaneando os Personagens");
-            while(reader.hasNextLine()){
-                String line = reader.nextLine();
+            while(FileReader.hasNextLine()){
+                String line = FileReader.nextLine();
                 if(line.equalsIgnoreCase("CHARACTER")){
-                    String ID = reader.nextLine();
-                    String name = reader.nextLine();
-                    int energy = Integer.parseInt(reader.nextLine());
+                    String ID = FileReader.nextLine();
+                    String name = FileReader.nextLine();
+                    int energy = Integer.parseInt(FileReader.nextLine());
                     Persona character = new Persona(name, energy);
                     personaMap.put(ID, character);
                 }
                 
             }
-            reader.close();
+            FileReader.close();
         }
         catch(FileNotFoundException a){
             System.out.println ("Não foi possível encontrar o arquivo neste caminho");
@@ -33,31 +33,49 @@ public class FileReader {
             HashMap<String, Chapter> chapterMap = new HashMap<String, Chapter>();
             File file2 = new File(path);
             try{
-                Scanner reader = new Scanner( file2, "UTF-8");
+                Scanner FileReader = new Scanner( file2, "UTF-8");
                 System.out.println("Escaneando os Capítulos");
-                while(reader.hasNextLine()){
-                    String line = reader.nextLine();
+                while(FileReader.hasNextLine()){
+                    String line = FileReader.nextLine();
                     if(line.equalsIgnoreCase("CHAPTER")){
                         ArrayList<Choice> choices = new ArrayList<Choice>();
-                        String ID = reader.nextLine();
-                        String Title = reader.nextLine();
-                        String Name = reader.nextLine();
-                        String Character = reader.nextLine();
-                        int Energy = Integer.parseInt(reader.nextLine());
-                        String End = reader.nextLine();
-
+                        String ID = FileReader.nextLine();
+                        String Title = FileReader.nextLine();
+                        String Name = FileReader.nextLine();
+                        String Character = FileReader.nextLine();
+                        int Energy = Integer.parseInt(FileReader.nextLine());
+                        String End = FileReader.nextLine();
+                        String imageline = FileReader.nextLine();
+                        
+                        if (imageline.equalsIgnoreCase("imagestart")){
+                            String image = "";
+                            while(!line.equalsIgnoreCase("endimage")){
+                                line = FileReader.nextLine();
+                                if(line.equalsIgnoreCase("endimage")){
+                                    break;
+                                }
+                                    image += "\n" + line;
+                            }
+                            ChapterImage chapter = new ChapterImage(Title, Name, choices, personaMap.get(Character), Energy, End, image);
+                            chapterMap.put(ID, chapter);
+                            
+                        }
+                        else{
                         Chapter chapter = new Chapter(Title, Name, choices, personaMap.get(Character), Energy, End);
-                        chapterMap.put(ID, chapter);
+                        chapterMap.put(ID, chapter);    
+                        }
+
                 
                     }
+
                     else if(line.equalsIgnoreCase("CHOICE")){
-                        String ID = reader.nextLine();
-                        String choice = reader.nextLine();
-                        String IDOut = reader.nextLine();
+                        String ID = FileReader.nextLine();
+                        String choice = FileReader.nextLine();
+                        String IDOut = FileReader.nextLine();
                         chapterMap.get(ID).setChoices(new Choice(choice, chapterMap.get(IDOut)));
                     }
                 }
-                reader.close();
+                FileReader.close();
             }
             catch(FileNotFoundException a){
             System.out.println ("Não foi possível encontrar o arquivo neste caminho");

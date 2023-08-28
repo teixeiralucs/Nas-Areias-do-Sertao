@@ -1,13 +1,16 @@
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Scanner;
+import java.util.HashMap;
 
 public class Chapter {
-    private String title;
-    private String text;
-    private ArrayList<Choice> choices;
-    private Persona character;
-    private int modifier;
-    private String end;
+    protected String title;
+    protected String text;
+    protected ArrayList<Choice> choices;
+    protected Persona character;
+    protected int modifier;
+    protected String end;
+    Scanner ChapterScan = new Scanner (System.in);
     
     public String getTitle() {
         return title;
@@ -67,7 +70,25 @@ public class Chapter {
         this.end = end;
         this.choices = choices;
     }
+
+        public Chapter(Scanner ChapterScan, HashMap<String, Persona> personaMap, Scanner FileReader){
+        this.ChapterScan = ChapterScan;
+        this.choices = new ArrayList<Choice>();
+        this.ChapterReader(personaMap, FileReader);
     
+        }
+        protected void ChapterReader (HashMap<String, Persona> personaMap, Scanner FileReader){
+            FileReader.nextLine();
+            String ID = FileReader.nextLine();
+            this.character = personaMap.get(character);
+            FileReader.nextLine();
+            String line = FileReader.nextLine();
+            this.text = "";
+            while(!line.equalsIgnoreCase("MAIN")){
+                this.text += line + "\n";
+                line = FileReader.nextLine();
+            }
+        }
     public void run(){
         show();
         choose();
